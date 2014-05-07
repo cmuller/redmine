@@ -200,7 +200,7 @@ class IssueQuery < Query
       @available_columns.insert index, QueryColumn.new(:spent_hours,
         :sortable => "COALESCE((SELECT SUM(hours) FROM #{TimeEntry.table_name} WHERE #{TimeEntry.table_name}.issue_id = #{Issue.table_name}.id), 0)",
         :default_order => 'desc',
-        :caption => :label_spent_time
+        :caption => :label_spent_hours
       )
     end
 
