@@ -115,6 +115,7 @@ function uploadBlob(blob, uploadUrl, attachmentId, options) {
 }
 
 function addInputFiles(inputEl) {
+  $(inputEl).attr('onchange', null);
   var clearedFileInput = $(inputEl).clone().val('');
 
   if (inputEl.files) {
@@ -132,6 +133,7 @@ function addInputFiles(inputEl) {
   }
 
   clearedFileInput.insertAfter('#attachments_fields');
+  clearedFileInput.attr('onchange', 'addInputFiles(this);');
 }
 
 function uploadAndAttachFiles(files, inputEl) {
