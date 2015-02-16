@@ -1283,9 +1283,11 @@ class Issue < ActiveRecord::Base
         move_to_child_of(@parent_issue)
       else
         # to another tree
-        unless root?
-          move_to_right_of(root)
-          reload
+        unless root? 
+          if root
+            move_to_right_of(root)
+            reload
+          end
         end
         old_root_id = root_id
         self.root_id = (@parent_issue.nil? ? id : @parent_issue.root_id )
