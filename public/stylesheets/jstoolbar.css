@@ -97,4 +97,5 @@
 }
 .jstb_help {
     background-image: url(../images/help.png);
+    float: right;
 }

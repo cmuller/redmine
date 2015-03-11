@@ -63,28 +63,40 @@ jsToolBar.prototype.elements.space1 = {type: 'space'}
 
 // headings
 jsToolBar.prototype.elements.h1 = {
-	type: 'button',
-	title: 'Heading 1',
-	fn: {
-		wiki: function() { 
-		  this.encloseLineSelection('# ', '',function(str) {
-		    str = str.replace(/^#+\s+/, '')
-		    return str;
-		  });
-		}
-	}
+        type: 'button',
+        title: 'Heading 1',
+        fn: {
+                wiki: function() {
+                        this.encloseLineSelection('', '',function(str) {
+                               str = str.replace(/\r/g,'');
+                               str = str.replace(/^\s+|\s+$/g, '');
+                               // Trim the selection
+                               str = str.replace(/^\s*["#$%'*+,-.\/:;<=>?@\\^_`|~]*\s*/, '');
+                               str = str.replace(/\s*["#$%'*+,-.\/:;<=>?@\\^_`|~]*\s*$/, '');
+                               line = Array(str.length + 1).join('=');
+                               str = str + "\n" + line + "\n";
+                               return str;
+                        });
+                }
+        }
 }
 jsToolBar.prototype.elements.h2 = {
-	type: 'button',
-	title: 'Heading 2',
-	fn: {
-		wiki: function() { 
-		  this.encloseLineSelection('## ', '',function(str) {
-		    str = str.replace(/^#+\s+/, '')
-		    return str;
-		  });
-		}
-	}
+        type: 'button',
+        title: 'Heading 2',
+        fn: {
+                wiki: function() { 
+                        this.encloseLineSelection('', '',function(str) {
+                               str = str.replace(/\r/g,'');
+                               str = str.replace(/^\s+|\s+$/g, '');
+                               // Trim the selection
+                               str = str.replace(/^\s*["#$%'*+,-.\/:;<=>?@\\^_`|~]*\s*/, '');
+                               str = str.replace(/\s*["#$%'*+,-.\/:;<=>?@\\^_`|~]*\s*$/, '');
+                               line = Array(str.length + 1).join('-');
+                               str = str + "\n" + line + "\n";
+                               return str;
+                        });
+                }
+        }
 }
 jsToolBar.prototype.elements.h3 = {
 	type: 'button',
@@ -192,3 +204,17 @@ jsToolBar.prototype.elements.img = {
 
 // spacer
 jsToolBar.prototype.elements.space5 = {type: 'space'}
+
+// help
+jsToolBar.prototype.elements.help = {
+        type: 'button',
+	class: 'ui-btn-right',
+        title: 'Wiki Syntax Help',
+        fn: {
+                wiki: function() { window.open('/help/wiki_syntax.html', '', 'resizable=yes, location=no, width=400, height=640, menubar=no, status=no, scrollbars=yes'); }
+        }
+}
+
+// spacer
+jsToolBar.prototype.elements.space6 = {type: 'space'}
+
